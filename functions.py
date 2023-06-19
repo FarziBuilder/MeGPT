@@ -17,6 +17,7 @@ def get_video_id_from_url(url):
 
     return video_id
 
+
 def get_video_transcript(url):
     video_id = get_video_id_from_url(url)
 
@@ -78,4 +79,21 @@ def YTgenerator(link):
   transcript = get_video_transcript(link)
   outcomes = learningOutcomes(transcript)
   return outcomes
- 
+
+def YTlearner(link):
+  transcript = get_video_transcript(link)
+  print("The transcript is this "+ transcript)
+  outcomes = stepsToLearn(transcript)
+  return outcomes
+
+def stepsToLearn(transcript):
+  completion = openai.ChatCompletion.create(
+  model="gpt-4",
+  messages=[
+    {"role": "system", "content": "I am giving you a transcript of a Youtube tutorial video. You have to list out the steps followed in the tutorial in great detail. Guide me on how can I complete the project shown in video"},
+    {
+      "role": "user", "content": transcript
+    }
+  ]
+  )
+  return completion.choices[0].message["content"]

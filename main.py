@@ -1,5 +1,7 @@
+git add main.py
+
 import json
-from functions import get_video_id_from_url, get_video_transcript, educationChecker,finalReport, learningOutcomes, YTgenerator
+from functions import get_video_id_from_url, get_video_transcript, educationChecker,finalReport, learningOutcomes, YTgenerator, YTlearner, stepsToLearn
 
 with open('watch-history.json', 'r') as file:
     data = json.load(file)
@@ -8,7 +10,10 @@ target_date = '2023-05-06'
 
 totalLearnings = ""
 
-#print(YTgenerator("https://www.youtube.com/watch?v=EVMmDNXgpj4"))
+print(get_video_transcript("https://www.youtube.com/watch?v=t3YJ5hKiMQ0&list=PLXYLzZ3XzIbi4lL43O6fIU_ojuZwBO6vi&index=6&t=29s"))
+
+#print(YTgenerator("https://www.youtube.com/watch?v=t3YJ5hKiMQ0&list=PLXYLzZ3XzIbi4lL43O6fIU_ojuZwBO6vi&index=6&t=29s"))
+#print(YTlearner("https://www.youtube.com/watch?v=E8lR59Yb2A0"))
 
 
 for item in data:
@@ -32,4 +37,4 @@ for item in data:
 #do GPT Call for getting the final Report
 print('\n')
 print(finalReport(totalLearnings))
-    
+
